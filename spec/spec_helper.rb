@@ -3,7 +3,7 @@ Bundler.setup
 require 'simplecov'
 SimpleCov.start
 
-require 'fa_rails'
+require 'font_awesome_helper'
 
 RSpec.configure do |config|
   #
