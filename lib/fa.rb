@@ -1,50 +1,23 @@
 # frozen_string_literal: true
 
 # FontAwesome 5 (Pro) Helper
-module FontAwesomeHelper
-  # html_safe: No user content
-  def fa_layer(icons = {}, title: nil, grow: 0, css: '')
-    # Add icons to the stack bottom to top
+class FA
+  require 'fa/icon'
+  require 'fa/span'
+  require 'fa/layer'
+
+  def raw
     #
-    # Note: scaling ounters does not work well with :grow, so should use the
-    # older "fa-3x" syntax in :css instead.
-    span_top = "<span class='icon fa-layers fa-fw #{css}' title='#{title}'>"
-    span_bottom = '</span>'
-
-    icons.each { |i| i[:options] = combine_options(i, combine_grows(i, grow)) }
-
-    output = span_top + parse_all(icons).join + span_bottom
-    safe_output(output)
   end
 
-  def fa_icon(fa, options = {})
-    if fa.is_a?(Hash)
-      name = fa[:name]
-      options = fa[:options]
-    elsif fa.is_a?(String) || fa.is_a?(Symbol)
-      name = fa.to_s
-    else
-      raise ArgumentError, 'Unexpected argument type.'
-    end
-    safe_output(parse_icon(name, options))
-  end
-
-  def fa_span(fa, text = '', options = {})
-    if fa.is_a?(Hash)
-      type = fa[:type].to_sym
-      text = fa[:text]
-      options = fa[:options]
-    elsif fa.is_a?(String) || fa.is_a?(Symbol)
-      type = fa.to_s
-    else
-      raise ArgumentError, 'Unexpected argument type.'
-    end
-    safe_output(parse_span(type, text, options))
+  def safe
+    safe_output(raw)
   end
 
   private
 
   def safe_output(output)
+    # html_safe: No user content
     output.respond_to?(:html_safe) ? output.html_safe : output
   end
 

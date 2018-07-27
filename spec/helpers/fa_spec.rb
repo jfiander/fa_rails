@@ -1,38 +1,34 @@
 # frozen_string_literal: true
 
-require 'font_awesome_helper'
-
-RSpec.describe do
-  include FontAwesomeHelper
-
+RSpec.describe FA do
   describe 'icon' do
     it 'should generate the correct icon from a string or symbol name' do
-      expect(fa_icon('help')).to eql(
+      expect(FA::Icon.new('help')).to eql(
         "<i class='fas fa-help' data-fa-transform='' title=''></i>"
       )
 
-      expect(fa_icon(:help)).to eql(
+      expect(FA::Icon.new(:help)).to eql(
         "<i class='fas fa-help' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'should generate the correct icon from a configuration hash' do
       fa = { name: 'help', options: { style: :light, size: 2 } }
-      expect(fa_icon(fa)).to eql(
+      expect(FA::Icon.new(fa)).to eql(
         "<i class='fal fa-help fa-2x' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'should raise ArgumentError for other input types' do
       [nil, [], 0].each do |fa|
-        expect { fa_icon(fa) }.to raise_error(
+        expect { FA::Icon.new(fa) }.to raise_error(
           ArgumentError, 'Unexpected argument type.'
         )
       end
     end
 
     it 'should generate the correct brand icon' do
-      expect(fa_icon(:github, style: :brands)).to eql(
+      expect(FA::Icon.new(:github, style: :brands)).to eql(
         "<i class='fab fa-github' data-fa-transform='' title=''></i>"
       )
     end
@@ -46,7 +42,7 @@ RSpec.describe do
         { name: 'exclamation', options: { style: :regular } }
       ]
 
-      expect(fa_layer(icons, grow: 2)).to eql(
+      expect(FA::Layer.new(icons, grow: 2)).to eql(
         "<span class='icon fa-layers fa-fw ' title=''>" \
         "<i class='fas fa-square' data-fa-transform='grow-2' title=''></i>" \
         "<i class='fas fa-circle' data-fa-transform='grow-3' title=''></i>" \
@@ -61,7 +57,7 @@ RSpec.describe do
         { name: :counter, text: 17, options: { position: :tl } }
       ]
 
-      expect(fa_layer(icons)).to eql(
+      expect(FA::Layer.new(icons)).to eql(
         "<span class='icon fa-layers fa-fw ' title=''>" \
         "<i class='fas fa-square' data-fa-transform='grow-0' title=''></i>" \
         "<span class='fa-layers-counter fa-layers-top-left' " \
@@ -72,14 +68,14 @@ RSpec.describe do
 
   describe 'span' do
     it 'should generate the correct span from a string or symbol type' do
-      expect(fa_span(:text, 'Hello')).to eql(
+      expect(FA::Span.new(:text, 'Hello')).to eql(
         "<span class='fa-layers-text ' data-fa-transform=''>Hello</span>"
       )
     end
 
     it 'should generate the correct span from a configuration hash' do
       span = { type: :text, text: 'World', options: { position: :bl } }
-      expect(fa_span(span)).to eql(
+      expect(FA::Span.new(span)).to eql(
         "<span class='fa-layers-text fa-layers-bottom-left' " \
         "data-fa-transform=''>World</span>"
       )
@@ -87,7 +83,7 @@ RSpec.describe do
 
     it 'should raise ArgumentError for other input types' do
       [nil, [], 0].each do |fa|
-        expect { fa_span(fa) }.to raise_error(
+        expect { FA::Span.new(fa) }.to raise_error(
           ArgumentError, 'Unexpected argument type.'
         )
       end
