@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe FontAwesomeHelper, type: :helper do
+require 'font_awesome_helper'
+
+RSpec.describe do
+  include FontAwesomeHelper
+
   describe 'icon' do
     it 'should generate the correct icon from a string or symbol name' do
       expect(fa_icon('help')).to eql(
