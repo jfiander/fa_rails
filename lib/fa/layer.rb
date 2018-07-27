@@ -4,7 +4,7 @@ class FA::Layer < FA
   def initialize(icons = {}, title: nil, grow: 0, css: '')
     # Add icons to the stack bottom to top
     #
-    # Note: scaling ounters does not work well with :grow, so should use the
+    # Note: scaling counters does not work well with :grow, so should use the
     # older "fa-3x" syntax in :css instead.
     span_top = "<span class='icon fa-layers fa-fw #{css}' title='#{title}'>"
     span_bottom = '</span>'
