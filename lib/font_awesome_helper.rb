@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# FontAwesome 5 (Pro) Heler
+# FontAwesome 5 (Pro) Helper
 module FontAwesomeHelper
   # html_safe: No user content
   def fa_layer(icons = {}, title: nil, grow: 0, css: '')
@@ -14,7 +14,7 @@ module FontAwesomeHelper
     icons.each { |i| i[:options] = combine_options(i, combine_grows(i, grow)) }
 
     output = span_top + parse_all(icons).join + span_bottom
-    output.html_safe
+    safe_output(output)
   end
 
   def fa_icon(fa, options = {})
@@ -26,7 +26,7 @@ module FontAwesomeHelper
     else
       raise ArgumentError, 'Unexpected argument type.'
     end
-    parse_icon(name, options).html_safe
+    safe_output(parse_icon(name, options))
   end
 
   def fa_span(fa, text = '', options = {})
@@ -39,17 +39,21 @@ module FontAwesomeHelper
     else
       raise ArgumentError, 'Unexpected argument type.'
     end
-    parse_span(type, text, options).html_safe
+    safe_output(parse_span(type, text, options))
   end
 
   private
+
+  def safe_output(output)
+    output.respond_to?(:html_safe) ? output.html_safe : output
+  end
 
   def parse_all(icons)
     icons.map do |icon|
       name = icon[:name]
       options = icon[:options] || {}
 
-      if name.in? %i[counter text]
+      if %i[counter text].include?(name)
         parse_span(name, icon[:text], options)
       else
         parse_icon(name, options)
@@ -63,7 +67,7 @@ module FontAwesomeHelper
     title = options[:title]
 
     @classes << "fa-#{name}"
-    @classes << "fa-#{size_x(options[:size])}" if options[:size].present?
+    @classes << "fa-#{size_x(options[:size])}" if !!options[:size]
     css = @classes.flatten.join(' ')
     transforms = @transforms.join(' ')
 
@@ -75,10 +79,10 @@ module FontAwesomeHelper
     options = fa_options(options)
     parse_options(options)
     pos = options.delete(:position)
-    position = long_position(pos) if pos.present?
+    position = long_position(pos) if !!pos
 
     @classes << "fa-layers-#{type}"
-    @classes << (position.present? ? "fa-layers-#{position}" : '')
+    @classes << (!!position ? "fa-layers-#{position}" : '')
     css = @classes.flatten.reject { |c| c.to_s.match?(/^fa.$/) }.join(' ')
     transforms = @transforms.join(' ')
 
@@ -108,7 +112,7 @@ module FontAwesomeHelper
   end
 
   def size_x(size)
-    return '' unless size.present? || size == 1
+    return '' unless !!size || size == 1
     "#{size}x"
   end
 
@@ -134,14 +138,14 @@ module FontAwesomeHelper
   def parse_transforms(options)
     @transforms = []
     %i[grow shrink rotate up down left right].each do |transform|
-      if options[transform].present?
+      if !!options[transform]
         @transforms << "#{transform}-#{options[transform]}"
       end
     end
   end
 
   def parse_style(style)
-    return 'fas' unless style.in?(%i[solid regular light brands])
+    return 'fas' unless %i[solid regular light brands].include?(style)
 
     'fa' + {
       solid: 's',
