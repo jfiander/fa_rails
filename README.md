@@ -94,10 +94,10 @@ A stack of layered FontAwesome icons and spans.
 #### Layer Arguments
 
 ```ruby
-icons #=> Hash of icon/span configurations
-title #=> String for tooltip text
-grow #=> Additional global scaling factor added to all objects in the stack
-css # Arbitrary CSS classes, space-delimited, applied to the layer stack
+icons #=> Array of Hashes of individual icon/span configurations
+title #=> String – tooltip text
+grow #=> Integer – additional global scaling factor added to all objects in the stack
+css # String – arbitrary CSS classes, space-delimited, applied to the layer stack
 ```
 
 ### Examples
