@@ -1,22 +1,20 @@
 # frozen_string_literal: true
 
 module FA
-  # FontAwesome 5 (Pro) Helper core class
+  # FontAwesome 5 (Pro) Helper core class for inheritance
   class Base
+    # Outputs the formatted string directly.
     def raw
       #
     end
 
+    # Attempts to call `.html_safe` on the the output of `raw`, if available.
     def safe
-      safe_output(raw)
+      output = raw
+      output.respond_to?(:html_safe) ? output.html_safe : output
     end
 
     private
-
-    def safe_output(output)
-      # html_safe: No user content
-      output.respond_to?(:html_safe) ? output.html_safe : output
-    end
 
     def parse_all(icons)
       icons.map do |icon|
