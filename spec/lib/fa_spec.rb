@@ -57,8 +57,8 @@ RSpec.describe FA do
         "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
         "<i class='fas fa-stack-1x fa-square fa-1x' data-fa-transform='grow-2' title=''></i>" \
         "<i class='fas fa-stack-1x fa-circle fa-1x' data-fa-transform='grow-3' title=''></i>" \
-        "<i class='far fa-stack-1x fa-exclamation fa-1x' data-fa-transform='grow-2' title=''>" \
-        '</i></span>'
+        "<i class='far fa-stack-1x fa-exclamation fa-1x' data-fa-transform='grow-2' title=''></i>" \
+        '</span>'
       )
     end
 
@@ -71,8 +71,22 @@ RSpec.describe FA do
       expect(FA::Layer.new(icons).safe).to eql(
         "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
         "<i class='fas fa-stack-1x fa-square fa-1x' data-fa-transform='grow-0' title=''></i>" \
-        "<span class='fa-stack-1x fa-layers-counter fa-layers-top-left' " \
-        "data-fa-transform='grow-0'>17</span></span>"
+        "<span class='fa-stack-1x fa-layers-counter fa-layers-top-left' data-fa-transform='grow-0'>17</span>" \
+        '</span>'
+      )
+    end
+
+    it 'should apply layer titles to all icons' do
+      icons = [
+        { name: :square, title: 'wrong 1' },
+        { name: :exclamation, title: 'wrong 2' }
+      ]
+
+      expect(FA::Layer.new(icons, title: 'right').safe).to eql(
+        "<span class='icon fa-layers fa-stack fa-fw ' title='right'>" \
+        "<i class='fas fa-stack-1x fa-square fa-1x' data-fa-transform='grow-0' title='right'></i>" \
+        "<i class='fas fa-stack-1x fa-exclamation fa-1x' data-fa-transform='grow-0' title='right'></i>" \
+        '</span>'
       )
     end
   end

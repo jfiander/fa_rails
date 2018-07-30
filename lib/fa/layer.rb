@@ -29,6 +29,7 @@ module FA
 
       @icons.each do |i|
         i[:options] = combine_options(i, combine_grows(i, @grow))
+        i[:options][:title] = @title
       end
 
       span_top + parse_all(@icons).join + span_bottom
