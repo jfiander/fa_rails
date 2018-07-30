@@ -3,6 +3,17 @@
 require 'spec_helper'
 
 RSpec.describe FA do
+  include FA
+
+  it 'should generate the correct link tag' do
+    tag = fa_cdn_link(version: 'v0.1.2', integrity: 'sha384-abc', pro: true)
+    expect(tag).to eql(
+      '<link rel="stylesheet" ' \
+      'href="https://pro.fontawesome.com/releases/v0.1.2/css/all.css" ' \
+      'integrity="sha384-abc" crossorigin="anonymous">'
+    )
+  end
+
   describe 'icon' do
     it 'should generate the correct icon from a string or symbol name' do
       expect(FA::Icon.new('help').safe).to eql(
