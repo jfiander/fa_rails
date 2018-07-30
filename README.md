@@ -135,14 +135,14 @@ FA::Span.new('counter', 5).safe
 
 # Gray envelope icon with red exclamation mark overlayed, with tooltip 'Invalid email address'
 FA::Layer.new([{ name: 'envelope', options: { css: :gray } }, { name: 'exclamation', options: { css: :red } }], title: 'Invalid email address').safe
-#=> "<span class='icon fa-layers fa-fw ' title='Invalid email address'>" \
+#=> "<span class='icon fa-layers fa-stack fa-fw ' title='Invalid email address'>" \
 #   "<i class='fas gray fa-envelope' data-fa-transform='grow-0' title=''></i>" \
 #   "<i class='fas red fa-exclamation' data-fa-transform='grow-0' title=''></i>" \
 #   "</span>"
 
 # Blue envelope with red counter on the top left corner, with value 7
 FA::Layer.new([{ name: 'envelope', options: { css: :blue } }, { name: 'counter', text: 7, options: { css: :red, position: :tl } }]).safe
-#=> "<span class='icon fa-layers fa-fw ' title=''>" \
+#=> "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
 #   "<i class='fas gray fa-envelope' data-fa-transform='grow-0' title=''></i>" \
 #   "<span class='red fa-layers-counter ' data-fa-transform='grow-0'>7" \
 #   "</span>" \

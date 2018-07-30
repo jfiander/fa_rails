@@ -54,7 +54,7 @@ RSpec.describe FA do
       ]
 
       expect(FA::Layer.new(icons, grow: 2).safe).to eql(
-        "<span class='icon fa-layers fa-fw ' title=''>" \
+        "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
         "<i class='fas fa-square' data-fa-transform='grow-2' title=''></i>" \
         "<i class='fas fa-circle' data-fa-transform='grow-3' title=''></i>" \
         "<i class='far fa-exclamation' data-fa-transform='grow-2' title=''>" \
@@ -69,7 +69,7 @@ RSpec.describe FA do
       ]
 
       expect(FA::Layer.new(icons).safe).to eql(
-        "<span class='icon fa-layers fa-fw ' title=''>" \
+        "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
         "<i class='fas fa-square' data-fa-transform='grow-0' title=''></i>" \
         "<span class='fa-layers-counter fa-layers-top-left' " \
         "data-fa-transform='grow-0'>17</span></span>"
