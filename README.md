@@ -26,7 +26,13 @@ corresponding locations in your app, and ensure you correctly include all files.
 
 Go to the FontAwesome
 [How to Use](https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css)
-page and copy the appropriate CDN link tag:
+page and copy the appropriate CDN link tag.
+
+You can also `include FA`, then use the built-in helper method in your layout:
+
+```ruby
+FA::Link.new(version: 'v5.2.0', integrity: 'sha384-some-key-here').safe
+```
 
 #### Free
 
