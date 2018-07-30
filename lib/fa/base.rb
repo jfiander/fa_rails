@@ -19,9 +19,7 @@ module FA
     def parse_all(icons)
       icons.map do |icon|
         name = icon[:name]
-        options = icon[:options] || {}
-        options[:size] ||= 1
-        options[:fa] = options[:fa].to_s
+        options = fa_options(icon[:options])
         options[:fa] += " stack-#{options[:size]}x"
 
         if %i[counter text].include?(name.to_sym)
@@ -61,7 +59,7 @@ module FA
     end
 
     def fa_options(options)
-      default = { style: :solid, css: '', fa: '' }
+      default = { style: :solid, css: '', fa: '', size: 1 }
 
       default.merge(options.to_h)
     end
@@ -95,7 +93,7 @@ module FA
     end
 
     def parse_classes(options)
-      @classes = []
+      @classes = ['fa']
       @classes << parse_style(options[:style])
       @classes << options[:fa].to_s.split(' ').map { |c| "fa-#{c}" }
       @classes << options[:css].to_s.split(' ')
