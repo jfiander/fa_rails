@@ -3,11 +3,9 @@
 require 'spec_helper'
 
 RSpec.describe FA do
-  include FA
-
   it 'should generate the correct link tag' do
-    tag = fa_cdn_link(version: 'v0.1.2', integrity: 'sha384-abc', pro: true)
-    expect(tag).to eql(
+    tag = FA::Link.new(version: 'v0.1.2', integrity: 'sha384-abc', pro: true)
+    expect(tag.safe).to eql(
       '<link rel="stylesheet" ' \
       'href="https://pro.fontawesome.com/releases/v0.1.2/css/all.css" ' \
       'integrity="sha384-abc" crossorigin="anonymous">'
