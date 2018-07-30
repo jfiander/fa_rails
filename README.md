@@ -10,17 +10,17 @@ You must still have your own FontAwesome Pro license, or install the
 [Free](https://use.fontawesome.com/releases/v5.2.0/fontawesome-free-5.2.0-web.zip)
 package.
 
-### Local Files
-
-Copy the complete `js` and `css` directories from the
-[web download](https://fontawesome.com/releases/5.2.0/web/download) into the
-corresponding locations in your app, and ensure you correctly include all files.
-
 Add the following to `config/application.rb`:
 
 ```ruby
 require 'fa'
 ```
+
+### Local Files
+
+Copy the complete `js` and `css` directories from the
+[web download](https://fontawesome.com/releases/5.2.0/web/download) into the
+corresponding locations in your app, and ensure you correctly include all files.
 
 ### FontAwesome CDN
 
