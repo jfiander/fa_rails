@@ -20,6 +20,9 @@ module FA
       icons.map do |icon|
         name = icon[:name]
         options = icon[:options] || {}
+        options[:size] ||= 1
+        options[:fa] = options[:fa].to_s
+        options[:fa] += " stack-#{options[:size]}x"
 
         if %i[counter text].include?(name.to_sym)
           parse_span(name, icon[:text], options)
@@ -35,7 +38,7 @@ module FA
       title = options[:title]
 
       @classes << "fa-#{name}"
-      @classes << "fa-#{size_x(options[:size])}" if !!options[:size]
+      @classes << "fa-#{options[:size]}x"
       css = @classes.flatten.join(' ')
       transforms = @transforms.join(' ')
 
@@ -77,11 +80,6 @@ module FA
       else
         { grow: combined_grow }
       end
-    end
-
-    def size_x(size)
-      return '' unless !!size || size == 1
-      "#{size}x"
     end
 
     def long_position(position)
