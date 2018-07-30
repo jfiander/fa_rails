@@ -94,7 +94,7 @@ module FA
 
     def parse_classes(options)
       @classes = []
-      @classes << parse_style(options[:style])
+      @classes << parse_style(options)
       @classes << options[:fa].to_s.split(' ').map { |c| "fa-#{c}" }
       @classes << options[:css].to_s.split(' ')
     end
@@ -108,10 +108,11 @@ module FA
       end
     end
 
-    def parse_style(style)
-      return 'fas' unless %i[solid regular light brands].include?(style)
+    def parse_style(options)
+      return if options[:css].to_s.match?(/fa[srlb]/)
+      return 'fas' unless %i[solid regular light brands].include?(options[:style])
 
-      'fa' + { solid: 's', regular: 'r', light: 'l', brands: 'b' }[style]
+      'fa' + { solid: 's', regular: 'r', light: 'l', brands: 'b' }[options[:style]]
     end
   end
 end
