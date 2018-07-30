@@ -93,7 +93,7 @@ module FA
     end
 
     def parse_classes(options)
-      @classes = ['fa']
+      @classes = []
       @classes << parse_style(options[:style])
       @classes << options[:fa].to_s.split(' ').map { |c| "fa-#{c}" }
       @classes << options[:css].to_s.split(' ')

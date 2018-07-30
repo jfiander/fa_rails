@@ -15,18 +15,18 @@ RSpec.describe FA do
   describe 'icon' do
     it 'should generate the correct icon from a string or symbol name' do
       expect(FA::Icon.new('help').safe).to eql(
-        "<i class='fa fas fa-help fa-1x' data-fa-transform='' title=''></i>"
+        "<i class='fas fa-help fa-1x' data-fa-transform='' title=''></i>"
       )
 
       expect(FA::Icon.new(:help).safe).to eql(
-        "<i class='fa fas fa-help fa-1x' data-fa-transform='' title=''></i>"
+        "<i class='fas fa-help fa-1x' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'should generate the correct icon from a configuration hash' do
       fa = { name: 'help', options: { style: :light, size: 2 } }
       expect(FA::Icon.new(fa).safe).to eql(
-        "<i class='fa fal fa-help fa-2x' data-fa-transform='' title=''></i>"
+        "<i class='fal fa-help fa-2x' data-fa-transform='' title=''></i>"
       )
     end
 
@@ -40,7 +40,7 @@ RSpec.describe FA do
 
     it 'should generate the correct brand icon' do
       expect(FA::Icon.new(:github, style: :brands).safe).to eql(
-        "<i class='fa fab fa-github fa-1x' data-fa-transform='' title=''></i>"
+        "<i class='fab fa-github fa-1x' data-fa-transform='' title=''></i>"
       )
     end
   end
@@ -55,9 +55,9 @@ RSpec.describe FA do
 
       expect(FA::Layer.new(icons, grow: 2).safe).to eql(
         "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
-        "<i class='fa fas fa-stack-1x fa-square fa-1x' data-fa-transform='grow-2' title=''></i>" \
-        "<i class='fa fas fa-stack-1x fa-circle fa-1x' data-fa-transform='grow-3' title=''></i>" \
-        "<i class='fa far fa-stack-1x fa-exclamation fa-1x' data-fa-transform='grow-2' title=''>" \
+        "<i class='fas fa-stack-1x fa-square fa-1x' data-fa-transform='grow-2' title=''></i>" \
+        "<i class='fas fa-stack-1x fa-circle fa-1x' data-fa-transform='grow-3' title=''></i>" \
+        "<i class='far fa-stack-1x fa-exclamation fa-1x' data-fa-transform='grow-2' title=''>" \
         '</i></span>'
       )
     end
@@ -70,8 +70,8 @@ RSpec.describe FA do
 
       expect(FA::Layer.new(icons).safe).to eql(
         "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
-        "<i class='fa fas fa-stack-1x fa-square fa-1x' data-fa-transform='grow-0' title=''></i>" \
-        "<span class='fa fa-stack-1x fa-layers-counter fa-layers-top-left' " \
+        "<i class='fas fa-stack-1x fa-square fa-1x' data-fa-transform='grow-0' title=''></i>" \
+        "<span class='fa-stack-1x fa-layers-counter fa-layers-top-left' " \
         "data-fa-transform='grow-0'>17</span></span>"
       )
     end
@@ -80,14 +80,14 @@ RSpec.describe FA do
   describe 'span' do
     it 'should generate the correct span from a string or symbol type' do
       expect(FA::Span.new(:text, 'Hello').safe).to eql(
-        "<span class='fa fa-layers-text ' data-fa-transform=''>Hello</span>"
+        "<span class='fa-layers-text ' data-fa-transform=''>Hello</span>"
       )
     end
 
     it 'should generate the correct span from a configuration hash' do
       span = { type: :text, text: 'World', options: { position: :bl } }
       expect(FA::Span.new(span).safe).to eql(
-        "<span class='fa fa-layers-text fa-layers-bottom-left' " \
+        "<span class='fa-layers-text fa-layers-bottom-left' " \
         "data-fa-transform=''>World</span>"
       )
     end
