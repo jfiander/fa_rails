@@ -14,6 +14,11 @@ module FA
       output.respond_to?(:html_safe) ? output.html_safe : output
     end
 
+    # Shortcut for create and output safe
+    def self.p(*args)
+      new(*args).safe
+    end
+
     private
 
     def parse_all(icons)
