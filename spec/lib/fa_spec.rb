@@ -91,6 +91,22 @@ RSpec.describe FA do
     end
   end
 
+  describe 'build' do
+    it 'should generate the correct layer' do
+      layer = FA::Build.p do |b|
+        b.icon('circle')
+        b.span('counter', 7)
+      end
+
+      expect(layer).to eql(
+        "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
+        "<i class='fas fa-stack-1x fa-circle fa-1x' data-fa-transform='grow-0' title=''></i>" \
+        "<span class='fa-stack-1x fa-layers-counter ' data-fa-transform='grow-0'>7</span>" \
+        '</span>'
+      )
+    end
+  end
+
   describe 'span' do
     it 'should generate the correct span from a string or symbol type' do
       expect(FA::Span.p(:text, 'Hello')).to eql(

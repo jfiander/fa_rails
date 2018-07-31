@@ -9,5 +9,6 @@ module FA
   require 'fa/icon'
   require 'fa/span'
   require 'fa/layer'
+  require 'fa/build'
   require 'fa/link'
 end

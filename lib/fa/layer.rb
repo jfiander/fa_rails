@@ -23,16 +23,19 @@ module FA
 
     # Outputs the formatted stack of icons and spans directly.
     def raw
-      span_top = "<span class='icon fa-layers fa-stack fa-fw #{@css}' " \
-        "title='#{@title}'>"
-      span_bottom = '</span>'
-
       @icons.each do |i|
         i[:options] = combine_options(i, combine_grows(i, @grow))
         i[:options][:title] = @title
       end
 
-      span_top + parse_all(@icons).join + span_bottom
+      build { parse_all(@icons).join }
+    end
+
+    private
+
+    def build
+      "<span class='icon fa-layers fa-stack fa-fw #{@css}' " \
+      "title='#{@title}'>#{yield}</span>"
     end
   end
 end
