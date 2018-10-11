@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fa_rails (0.1.15)
+    fa_rails (0.1.16)
 
 GEM
   remote: https://rubygems.org/
@@ -39,4 +39,4 @@ DEPENDENCIES
   simplecov (~> 0.15, >= 0.15.1)
 
 BUNDLED WITH
-   1.16.0
+   1.16.4
