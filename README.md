@@ -7,7 +7,7 @@ A quick helper for using FontAwesome icons in Rails.
 **This gem is just the code for using FontAwesome in your Rails applications.**
 
 You must still have your own FontAwesome Pro license, or install the
-[Free](https://use.fontawesome.com/releases/v5.2.0/fontawesome-free-5.2.0-web.zip)
+[Free](https://use.fontawesome.com/releases/v5.3.1/fontawesome-free-5.3.1-web.zip)
 package.
 
 Add the following to `config/application.rb`:
@@ -31,22 +31,22 @@ page and copy the appropriate CDN link tag.
 You can also `include FA`, then use the built-in helper method in your layout:
 
 ```ruby
-FA::Link.new(version: 'v5.2.0', integrity: 'sha384-some-key-here').safe
+FA::Link.new(version: 'v5.3.1', integrity: 'sha384-some-key-here').safe
 ```
 
 #### Free
 
 ```html
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-some-key-here" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-some-key-here" crossorigin="anonymous">
 ```
 
 #### Pro
 
 ```html
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-some-key-here" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-some-key-here" crossorigin="anonymous">
 ```
 
-**Be sure to also need to register each domain that will use this CDN link.**
+**Be sure to also register each domain that will use this CDN link.**
 
 ## Usage
 
@@ -60,7 +60,7 @@ configuration for the object.
 
 `Layer` is used to combine multiple units into a single end object. It takes
 advantage of the Hash input style on `Icon` and `Span` to allow it to accept a
-single configuration Hash for the entire stack.
+single configuration Array for the entire stack.
 
 All three classes respond to two output methods: `raw` and `safe`.
 
@@ -69,6 +69,8 @@ All three classes respond to two output methods: `raw` and `safe`.
 
 For convenience, each class also has a `p` method, which will create a new
 instance, and return its `safe` output.
+
+There is also a `Build` class that exposes a DSL to construct a `Layer`.
 
 ### Icon
 
@@ -128,7 +130,7 @@ A stack of layered FontAwesome icons and spans.
 icons #=> Array of Hashes of individual icon/span configurations
 title #=> String – tooltip text
 grow #=> Integer – additional global scaling factor added to all objects in the stack
-css # String – arbitrary CSS classes, space-delimited, applied to the layer stack
+css #=> String – arbitrary CSS classes, space-delimited, applied to the layer stack
 ```
 
 ### Examples
@@ -156,9 +158,19 @@ FA::Layer.p([{ name: 'envelope', options: { css: :blue } }, { name: 'counter', t
 #   "<span class='fa-stack-1x red fa-layers-counter fa-layers-top-left' data-fa-transform='grow-0'>7</span>" \
 #   "</span>"
 
-# The same stack, but using FA::Build
-FA::Build.p do |b|
-  b.icon('circle')
-  b.span('counter', 7)
+# The same stack, but using the FA::Build DSL (with various syntaxes).
+FA::Build.p do
+  icon('envelope', css: 'blue')
+  span('counter', 7, css: 'red', position: :tl)
 end
+
+FA::Build.p do |b|
+  b.icon('envelope', css: 'blue')
+  b.span('counter', 7, css: 'red', position: :tl)
+end
+
+FA::Build.new do |b|
+  b.icon('envelope', css: 'blue')
+  b.span('counter', 7, css: 'red', position: :tl)
+end.safe
 ```
