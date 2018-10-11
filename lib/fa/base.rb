@@ -23,14 +23,13 @@ module FA
 
     def parse_all(icons)
       icons.map do |icon|
-        name = icon[:name]
         options = fa_options(icon[:options])
         options[:fa] += " stack-#{options[:size]}x"
 
-        if %i[counter text].include?(name.to_sym)
-          parse_span(name, icon[:text], options)
+        if %i[counter text].include?(icon[:name].to_sym)
+          parse_span(icon[:name], icon[:text], options)
         else
-          parse_icon(name, options)
+          parse_icon(icon[:name], options)
         end
       end
     end
@@ -38,14 +37,14 @@ module FA
     def parse_icon(name, options = {})
       options = fa_options(options)
       parse_options(options)
-      title = options[:title]
 
       @classes << "fa-#{name}"
       @classes << "fa-#{options[:size]}x"
       css = @classes.flatten.join(' ')
       transforms = @transforms.join(' ')
 
-      "<i class='#{css}' data-fa-transform='#{transforms}' title='#{title}'></i>"
+      "<i class='#{css}' data-fa-transform='#{transforms}' " \
+      "title='#{options[:title]}'></i>"
     end
 
     def parse_span(type, text, options = {})
