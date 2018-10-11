@@ -41,7 +41,7 @@ module FA
 
     # Shortcut for create and output safe
     def self.p(*args, &block)
-      new(*args, &block).safe
+      new(*args).instance_eval(&block).safe
     end
 
     private
