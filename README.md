@@ -1,5 +1,10 @@
 # FA Rails
 
+[![Gem Version](https://img.shields.io/gem/v/fa_rails.svg)](https://rubygems.org/gems/fa_rails)
+[![Build Status](https://travis-ci.org/jfiander/fa_rails.svg)](https://travis-ci.org/jfiander/fa_rails)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c5becd2d83b6de4b6392/maintainability)](https://codeclimate.com/github/jfiander/fa_rails/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c5becd2d83b6de4b6392/test_coverage)](https://codeclimate.com/github/jfiander/fa_rails/test_coverage)
+
 A quick helper for using FontAwesome icons in Rails.
 
 ## Installation
