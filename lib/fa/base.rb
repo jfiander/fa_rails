@@ -9,8 +9,8 @@ module FA
     end
 
     # Attempts to call `.html_safe` on the the output of `raw`, if available.
-    def safe
-      output = raw
+    def safe(html = nil)
+      output = html || raw
       output.respond_to?(:html_safe) ? output.html_safe : output
     end
 

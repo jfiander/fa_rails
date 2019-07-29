@@ -26,6 +26,11 @@ module FA
       "<script src=\"https://kit.fontawesome.com/#{@kit}.js\"></script>"
     end
 
+    def self.kit(kit_id)
+      k = new(kit: kit_id)
+      k.safe(k.kit)
+    end
+
     private
 
     def url
