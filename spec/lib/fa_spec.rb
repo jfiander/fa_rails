@@ -3,13 +3,28 @@
 require 'spec_helper'
 
 RSpec.describe FA do
-  it 'should generate the correct link tag' do
-    tag = FA::Link.new(version: 'v0.1.2', integrity: 'sha384-abc', pro: true)
-    expect(tag.safe).to eql(
-      '<link rel="stylesheet" ' \
-      'href="https://pro.fontawesome.com/releases/v0.1.2/css/all.css" ' \
-      'integrity="sha384-abc" crossorigin="anonymous">'
-    )
+  describe 'link' do
+    it 'should generate the correct link tag' do
+      tag = FA::Link.new(version: 'v0.1.2', integrity: 'sha384-abc', pro: true)
+      expect(tag.safe).to eql(
+        '<link rel="stylesheet" ' \
+        'href="https://pro.fontawesome.com/releases/v0.1.2/css/all.css" ' \
+        'integrity="sha384-abc" crossorigin="anonymous">'
+      )
+    end
+
+    it 'should generate the correct kit link tag' do
+      tag = FA::Link.new(kit: 'abcdefg', pro: true)
+      expect(tag.kit).to eql(
+        "<script src=\"https://kit.fontawesome.com/abcdefg.js\"></script>"
+      )
+    end
+
+    it 'should raise an ArgumentError if not initialized correctly' do
+      expect { FA::Link.new(version: 'v0.0.0', pro: true) }.to raise_error(
+        ArgumentError, 'Must specify version and integrity or kit.'
+      )
+    end
   end
 
   describe 'icon' do
