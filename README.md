@@ -147,6 +147,10 @@ css #=> String – arbitrary CSS classes, space-delimited, applied to the layer 
 FA::Icon.p('lock', fa: 'fw')
 #=> "<i class='fas fa-fw fa-lock fa-1x' style='' data-fa-transform='' title=''></i>"
 
+# Duotone fire-alt icon with swapped opacity
+FA::Icon.p('fire-alt', fa: 'swap-opacity')
+#=> "<i class='fas fa-swap-opacity fa-fire-alt fa-1x' style='' data-fa-transform='' title=''></i>"
+
 # Duotone fire-alt icon with specified opacities
 FA::Icon.p('fire-alt', style: :duotone, raw_css: { '--fa-primary-opacity' => '0.6', '--fa-secondary-opacity' => '0.4' })
 #=> "<i class='fad fa-fire-alt fa-1x' style='--fa-primary-opacity: 0.4; --fa-secondary-opacity: 0.6;' data-fa-transform='' title=''></i>"
