@@ -90,6 +90,7 @@ options #=> Hash
   size: Integer # Stepped scaling factor
 
   css: String # Arbitrary CSS classes, space-delimited
+  raw_css: Hash # Arbitrary raw CSS, as a hash of attributes and values
   fa: String # Arbitrary FA classes, space-delimited – each is automatically prefixed with `fa-`
   title: String #=> Tooltip text
   grow: Integer #=> Transform value – amount to grow by
@@ -114,6 +115,7 @@ options #=> Hash
   position: Symbol # Indicator of which corner to display on – one of [:tr, :tl, :br, :bl]
 
   css: String # Arbitrary CSS classes, space-delimited
+  raw_css: Hash # Arbitrary raw CSS, as a hash of attributes and values
   fa: String # Arbitrary FA classes, space-delimited – each is automatically prefixed with `fa-`
   title: String #=> Tooltip text
   grow: Integer #=> Transform value – amount to grow by
@@ -143,24 +145,28 @@ css #=> String – arbitrary CSS classes, space-delimited, applied to the layer 
 ```ruby
 # Fixed-width lock icon
 FA::Icon.p('lock', fa: 'fw')
-#=> "<i class='fas fa-fw fa-lock fa-1x' data-fa-transform='' title=''></i>"
+#=> "<i class='fas fa-fw fa-lock fa-1x' style='' data-fa-transform='' title=''></i>"
+
+# Duotone fire-alt icon with specified opacities
+FA::Icon.p('fire-alt', style: :duotone, raw_css: { '--fa-primary-opacity' => '0.6', '--fa-secondary-opacity' => '0.4' })
+#=> "<i class='fad fa-fire-alt fa-1x' style='--fa-primary-opacity: 0.4; --fa-secondary-opacity: 0.6;' data-fa-transform='' title=''></i>"
 
 # Counter span, with value 5
 FA::Span.p('counter', 5)
-#=> "<span class='fa-layers-counter ' data-fa-transform=''>5</span>"
+#=> "<span class='fa-layers-counter ' style='' data-fa-transform=''>5</span>"
 
 # Gray envelope icon with red exclamation mark overlayed, with tooltip 'Invalid email address'
 FA::Layer.p([{ name: 'envelope', options: { css: :gray } }, { name: 'exclamation', options: { css: :red } }], title: 'Invalid email address')
 #=> "<span class='icon fa-layers fa-stack fa-fw ' title='Invalid email address'>" \
-#   "<i class='fas fa-stack-1x gray fa-envelope fa-1x' data-fa-transform='grow-0' title='Invalid email address'></i>" \
-#   "<i class='fas fa-stack-1x red fa-exclamation fa-1x' data-fa-transform='grow-0' title='Invalid email address'></i>" \
+#   "<i class='fas fa-stack-1x gray fa-envelope fa-1x' style='' data-fa-transform='grow-0' title='Invalid email address'></i>" \
+#   "<i class='fas fa-stack-1x red fa-exclamation fa-1x' style='' data-fa-transform='grow-0' title='Invalid email address'></i>" \
 #   "</span>"
 
 # Blue envelope with red counter on the top left corner, with value 7
 FA::Layer.p([{ name: 'envelope', options: { css: :blue } }, { name: 'counter', text: 7, options: { css: :red, position: :tl } }])
 #=> "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
-#   "<i class='fas fa-stack-1x blue fa-envelope fa-1x' data-fa-transform='grow-0' title=''></i>" \
-#   "<span class='fa-stack-1x red fa-layers-counter fa-layers-top-left' data-fa-transform='grow-0'>7</span>" \
+#   "<i class='fas fa-stack-1x blue fa-envelope fa-1x' style='' data-fa-transform='grow-0' title=''></i>" \
+#   "<span class='fa-stack-1x red fa-layers-counter fa-layers-top-left' style='' data-fa-transform='grow-0'>7</span>" \
 #   "</span>"
 
 # The same stack, but using the FA::Build DSL (with various syntaxes).

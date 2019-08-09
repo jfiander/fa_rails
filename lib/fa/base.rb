@@ -43,7 +43,7 @@ module FA
       css = @classes.flatten.join(' ')
       transforms = @transforms.join(' ')
 
-      "<i class='#{css}' data-fa-transform='#{transforms}' " \
+      "<i class='#{css}' style='#{@styles}' data-fa-transform='#{transforms}' " \
       "title='#{options[:title]}'></i>"
     end
 
@@ -59,11 +59,11 @@ module FA
       css = @classes.flatten.reject { |c| c.to_s.match?(/^fa.$/) }.join(' ')
       transforms = @transforms.join(' ')
 
-      "<span class='#{css}' data-fa-transform='#{transforms}'>#{text}</span>"
+      "<span class='#{css}' style='#{@styles}' data-fa-transform='#{transforms}'>#{text}</span>"
     end
 
     def fa_options(options)
-      default = { style: :solid, css: '', fa: '', size: 1 }
+      default = { style: :solid, css: '', raw_css: {}, fa: '', size: 1 }
 
       default.merge(options.to_h)
     end
@@ -93,6 +93,7 @@ module FA
 
     def parse_options(options)
       parse_classes(options)
+      parse_styles(options)
       parse_transforms(options)
     end
 
@@ -101,6 +102,10 @@ module FA
       @classes << parse_style(options)
       @classes << options[:fa].to_s.split(' ').map { |c| "fa-#{c}" }
       @classes << options[:css].to_s.split(' ')
+    end
+
+    def parse_styles(options)
+      @styles = options[:raw_css].map { |k, v| "#{k}: #{v};" }.join(' ')
     end
 
     def parse_transforms(options)
