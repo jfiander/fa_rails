@@ -151,6 +151,13 @@ FA::Icon.p('lock', fa: 'fw')
 FA::Icon.p('fire-alt', style: :duotone, raw_css: { '--fa-primary-opacity' => '0.6', '--fa-secondary-opacity' => '0.4' })
 #=> "<i class='fad fa-fire-alt fa-1x' style='--fa-primary-opacity: 0.4; --fa-secondary-opacity: 0.6;' data-fa-transform='' title=''></i>"
 
+# You can also use this simplified configuration option for adding styles
+#   This is reforatted and merged into :raw_css
+#   Accepts either snake_case symbols or spear-case strings as keys, and strings or symbols as values
+#   This is the easiest way to add primary/secondary styles for duotone icons
+FA::Icon.p('fire-alt', style: :duotone, fa_styles: { primary_opacity: '0.6', secondary_opacity: '0.4', primary_color: :green, secondary_color: '#DD2200' })
+#=> "<i class='fad fa-fire-alt fa-1x' style='--fa-primary-opacity: 0.6; --fa-secondary-opacity: 0.4; --fa-primary-color: green; --fa-secondary-color: #DD2200;' data-fa-transform='' title=''></i>"
+
 # Counter span, with value 5
 FA::Span.p('counter', 5)
 #=> "<span class='fa-layers-counter ' style='' data-fa-transform=''>5</span>"

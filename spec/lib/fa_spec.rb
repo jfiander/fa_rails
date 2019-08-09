@@ -28,11 +28,13 @@ RSpec.describe FA do
   end
 
   describe 'icon' do
-    it 'should generate the correct icon from a string or symbol name' do
+    it 'should generate the correct icon from a string name' do
       expect(FA::Icon.p('help')).to eql(
         "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
+    end
 
+    it 'should generate the correct icon from a symbol name' do
       expect(FA::Icon.p(:help)).to eql(
         "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
@@ -56,6 +58,19 @@ RSpec.describe FA do
     it 'should generate the correct brand icon' do
       expect(FA::Icon.p(:github, style: :brands)).to eql(
         "<i class='fab fa-github fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
+    it 'should generate the correct icon with styles' do
+      expect(
+        FA::Icon.p(
+          'fire-alt', style: :duotone, fa_styles: {
+            primary_opacity: '0.6', secondary_opacity: '0.4', primary_color: :green, secondary_color: '#DD2200'
+          }
+        )
+      ).to eql(
+        "<i class='fad fa-fire-alt fa-1x' style='--fa-primary-opacity: 0.6; --fa-secondary-opacity: 0.4; " \
+        "--fa-primary-color: green; --fa-secondary-color: #DD2200;' data-fa-transform='' title=''></i>"
       )
     end
   end

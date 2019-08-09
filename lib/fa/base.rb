@@ -93,6 +93,7 @@ module FA
 
     def parse_options(options)
       parse_classes(options)
+      options = merge_fa_styles(options)
       parse_styles(options)
       parse_transforms(options)
     end
@@ -102,6 +103,17 @@ module FA
       @classes << parse_style(options)
       @classes << options[:fa].to_s.split(' ').map { |c| "fa-#{c}" }
       @classes << options[:css].to_s.split(' ')
+    end
+
+    def merge_fa_styles(options)
+      fa_styles = options.delete(:fa_styles)
+      return options unless fa_styles
+
+      fa_styles = fa_styles.each_with_object({}) do |(k, v), hash|
+        hash["--fa-#{k.to_s.tr('_', '-')}"] = v.to_s
+      end
+      options[:raw_css] = options[:raw_css].merge(fa_styles)
+      options
     end
 
     def parse_styles(options)
