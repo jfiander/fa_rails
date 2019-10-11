@@ -29,29 +29,41 @@ corresponding locations in your app, and ensure you correctly include all files.
 
 ### FontAwesome CDN
 
-Go to the FontAwesome
-[How to Use](https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css)
-page and copy the appropriate CDN link tag.
+You can also link into the FontAwesome CDN, in either of two ways:
 
-You can also `include FA`, then use the built-in helper method in your layout:
+#### Version-Specific Link
+
+You can use this helper method in your layout:
 
 ```ruby
 FA::Link.new(version: 'v5.3.1', integrity: 'sha384-some-key-here').safe
 ```
 
-#### Free
+Or, go to the FontAwesome
+[How to Use](https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css)
+page and copy the appropriate CDN link tag.
+
+**Be sure to also register each domain that will use this CDN link.**
+
+##### Free
 
 ```html
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-some-key-here" crossorigin="anonymous">
 ```
 
-#### Pro
+##### Pro
 
 ```html
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-some-key-here" crossorigin="anonymous">
 ```
 
-**Be sure to also register each domain that will use this CDN link.**
+#### Kit Link
+
+Use this helper method in your layout:
+
+```ruby
+FA::Link.kit('kit-id')
+```
 
 ## Usage
 
