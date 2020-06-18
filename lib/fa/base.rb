@@ -3,6 +3,10 @@
 module FA
   # FontAwesome 5 (Pro) Helper core class for inheritance
   class Base
+    STYLES = {
+      solid: 's', regular: 'r', light: 'l', duotone: 'd', brands: 'b'
+    }.freeze
+
     # Outputs the formatted string directly.
     def raw
       #
@@ -131,9 +135,9 @@ module FA
 
     def parse_style(options)
       return if options[:css].to_s.match?(/fa[srldb]/)
-      return 'fas' unless %i[solid regular light duotone brands].include?(options[:style])
+      return 'fas' unless STYLES.keys.include?(options[:style])
 
-      'fa' + { solid: 's', regular: 'r', light: 'l', duotone: 'd', brands: 'b' }[options[:style]]
+      'fa' + STYLES[options[:style]]
     end
   end
 end
