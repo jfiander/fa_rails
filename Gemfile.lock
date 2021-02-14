@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fa_rails (0.1.23)
+    fa_rails (0.1.24)
 
 GEM
   remote: https://rubygems.org/

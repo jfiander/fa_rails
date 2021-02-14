@@ -4,7 +4,8 @@ module FA
   # FontAwesome 5 (Pro) Helper core class for inheritance
   class Base
     STYLES = {
-      solid: 's', regular: 'r', light: 'l', thin: 't', duotone: 'd', brands: 'b'
+      solid: 's', regular: 'r', light: 'l', thin: 't',
+      duotone: 'd', brands: 'b', kit_upload: 'k'
     }.freeze
 
     # Outputs the formatted string directly.
