@@ -47,6 +47,36 @@ RSpec.describe FA do
       )
     end
 
+    it 'should correctly handle a string fa option' do
+      expect(FA::Icon.p(:help, fa: 'fw 2x')).to eql(
+        "<i class='fas fa-fw fa-2x fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
+    it 'should correctly handle an array fa option' do
+      expect(FA::Icon.p(:help, fa: %i[fw 2x])).to eql(
+        "<i class='fas fa-fw fa-2x fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
+    it 'should correctly handle a string css option' do
+      expect(FA::Icon.p(:help, css: 'green big')).to eql(
+        "<i class='fas green big fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
+    it 'should correctly handle an array css option' do
+      expect(FA::Icon.p(:help, css: %i[green big])).to eql(
+        "<i class='fas green big fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
+    it 'should correctly handle a nil css option' do
+      expect(FA::Icon.p(:help, css: nil)).to eql(
+        "<i class='fas  fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
     it 'should raise ArgumentError for other input types' do
       [nil, [], 0].each do |fa|
         expect { FA::Icon.p(fa) }.to raise_error(

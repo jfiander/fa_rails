@@ -106,8 +106,13 @@ module FA
     def parse_classes(options)
       @classes = []
       @classes << parse_style(options)
-      @classes << options[:fa].to_s.split(' ').map { |c| "fa-#{c}" }
-      @classes << options[:css].to_s.split(' ')
+      @classes << format_classes(options[:fa], prefix: 'fa-')
+      @classes << format_classes(options[:css])
+    end
+
+    def format_classes(classes, prefix: nil)
+      classes = classes.split(' ') if classes.is_a?(String)
+      classes.map { |c| "#{prefix}#{c}" } if classes.is_a?(Array)
     end
 
     def merge_fa_styles(options)
