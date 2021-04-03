@@ -111,8 +111,8 @@ module FA
     end
 
     def format_classes(classes, prefix: nil)
-      classes = classes.split(' ') if classes.is_a?(String)
-      classes.map { |c| "#{prefix}#{c}" } if classes.is_a?(Array)
+      classes = classes.to_s.split(' ') unless classes.is_a?(Array)
+      classes.map { |c| "#{prefix}#{c}" }
     end
 
     def merge_fa_styles(options)

@@ -73,7 +73,7 @@ RSpec.describe FA do
 
     it 'should correctly handle a nil css option' do
       expect(FA::Icon.p(:help, css: nil)).to eql(
-        "<i class='fas  fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
