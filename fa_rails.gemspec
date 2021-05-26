@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name          = 'fa_rails'
-  s.version       = '0.1.26'
-  s.date          = '2021-04-03'
+  s.version       = '0.1.27'
+  s.date          = '2021-05-26'
   s.summary       = 'FontAwesome helper for Rails'
   s.description   = 'A helper module for using FontAwesome icons in Rails.'
   s.homepage      = 'http://rubygems.org/gems/fa_rails'
