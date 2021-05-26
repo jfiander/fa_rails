@@ -140,7 +140,7 @@ module FA
     end
 
     def parse_style(options)
-      return if options[:css].to_s.match?(/fa[srldbk]/)
+      return if options[:css].to_s.match?(/fa[#{STYLES.values.join}]/)
       return 'fas' unless STYLES.keys.include?(options[:style])
 
       'fa' + STYLES[options[:style]]
