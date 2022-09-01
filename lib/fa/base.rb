@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 module FA
-  # FontAwesome 5 (Pro) Helper core class for inheritance
+  # FontAwesome 6 (Pro) Helper core class for inheritance
   class Base
     STYLES = {
+      nil => 's',
       solid: 's', regular: 'r', light: 'l', thin: 't',
       duotone: 'd', brands: 'b', kit_upload: 'k'
+    }.freeze
+
+    MODES = {
+      nil => '',
+      sharp: 's'
     }.freeze
 
     # Outputs the formatted string directly.
@@ -141,9 +147,10 @@ module FA
 
     def parse_style(options)
       return if options[:css].to_s.match?(/\bfa[#{STYLES.values.join}]\b/)
-      return 'fas' unless STYLES.keys.include?(options[:style])
 
-      'fa' + STYLES[options[:style]]
+      style = 'fa'
+      style += STYLES[options[:style]]
+      style += MODES[options[:mode]]
     end
   end
 end

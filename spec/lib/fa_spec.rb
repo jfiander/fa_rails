@@ -91,6 +91,12 @@ RSpec.describe FA do
       )
     end
 
+    it 'generates the correct sharp icon' do
+      expect(FA::Icon.p(:house, mode: :sharp)).to eql(
+        "<i class='fass fa-house fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
     it 'should generate the correct icon with styles' do
       expect(
         FA::Icon.p(
