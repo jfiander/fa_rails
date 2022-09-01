@@ -70,7 +70,7 @@ FA::Link.kit('kit-id')
 The `FA` module contains three main subclasses: `Icon`, `Span`, and `Layer`.
 Argument formatting is consistent throughout.
 
-`Icon` and `Span` are the units of this module. Both can be used individually.  
+`Icon` and `Span` are the units of this module. Both can be used individually.
 The first argument of each class's `new` method can be either a String/Symbol of
 the name of the FontAwesome icon, or a Hash containing the complete
 configuration for the object.
@@ -99,6 +99,7 @@ A single FontAwesome icon.
 fa #=> String / Symbol – OR Hash
 options #=> Hash
   style: Symbol # One of [:solid, :regular, :light, :brands], default :solid
+  mode: Symbol # One of [:sharp], default: nil
   size: Integer # Stepped scaling factor
 
   css: String # Arbitrary CSS classes, space-delimited
@@ -166,6 +167,10 @@ FA::Icon.p('fire-alt', fa: 'swap-opacity')
 # Duotone fire-alt icon with specified opacities
 FA::Icon.p('fire-alt', style: :duotone, raw_css: { '--fa-primary-opacity' => '0.6', '--fa-secondary-opacity' => '0.4' })
 #=> "<i class='fad fa-fire-alt fa-1x' style='--fa-primary-opacity: 0.4; --fa-secondary-opacity: 0.6;' data-fa-transform='' title=''></i>"
+
+# Solid sharp house icon
+FA::Icon.p('house', mode: :sharp)
+#=> "<i class='fas fa-sharp fa-fire-alt fa-1x' style='' data-fa-transform='' title=''></i>"
 
 # You can also use this simplified configuration option for adding styles
 #   This is reforatted and merged into :raw_css
