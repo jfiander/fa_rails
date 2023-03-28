@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe FA do
   describe 'link' do
-    it 'should generate the correct link tag' do
+    it 'generates the correct link tag' do
       tag = FA::Link.new(version: 'v0.1.2', integrity: 'sha384-abc', pro: true)
       expect(tag.safe).to eql(
         '<link rel="stylesheet" ' \
@@ -13,14 +13,14 @@ RSpec.describe FA do
       )
     end
 
-    it 'should generate the correct kit link tag' do
+    it 'generates the correct kit link tag' do
       tag = FA::Link.kit('abcdefg')
       expect(tag).to eql(
         "<script src=\"https://kit.fontawesome.com/abcdefg.js\"></script>"
       )
     end
 
-    it 'should raise an ArgumentError if not initialized correctly' do
+    it 'raises an ArgumentError if not initialized correctly' do
       expect { FA::Link.new(version: 'v0.0.0', pro: true) }.to raise_error(
         ArgumentError, 'Must specify version and integrity or kit.'
       )
@@ -28,56 +28,56 @@ RSpec.describe FA do
   end
 
   describe 'icon' do
-    it 'should generate the correct icon from a string name' do
+    it 'generates the correct icon from a string name' do
       expect(FA::Icon.p('help')).to eql(
         "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
-    it 'should generate the correct icon from a symbol name' do
+    it 'generates the correct icon from a symbol name' do
       expect(FA::Icon.p(:help)).to eql(
         "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
-    it 'should generate the correct icon from a configuration hash' do
+    it 'generates the correct icon from a configuration hash' do
       fa = { name: 'help', options: { style: :light, size: 2 } }
       expect(FA::Icon.p(fa)).to eql(
         "<i class='fal fa-help fa-2x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
-    it 'should correctly handle a string fa option' do
+    it 'handles a string fa option' do
       expect(FA::Icon.p(:help, fa: 'fw 2x')).to eql(
         "<i class='fas fa-fw fa-2x fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
-    it 'should correctly handle an array fa option' do
+    it 'handles an array fa option' do
       expect(FA::Icon.p(:help, fa: %i[fw 2x])).to eql(
         "<i class='fas fa-fw fa-2x fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
-    it 'should correctly handle a string css option' do
+    it 'handles a string css option' do
       expect(FA::Icon.p(:help, css: 'green big')).to eql(
         "<i class='fas green big fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
-    it 'should correctly handle an array css option' do
+    it 'handles an array css option' do
       expect(FA::Icon.p(:help, css: %i[green big])).to eql(
         "<i class='fas green big fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
-    it 'should correctly handle a nil css option' do
+    it 'handles a nil css option' do
       expect(FA::Icon.p(:help, css: nil)).to eql(
         "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
       )
     end
 
-    it 'should raise ArgumentError for other input types' do
+    it 'raises ArgumentError for other input types' do
       [nil, [], 0].each do |fa|
         expect { FA::Icon.p(fa) }.to raise_error(
           ArgumentError, 'Unexpected argument type.'
@@ -91,7 +91,7 @@ RSpec.describe FA do
       )
     end
 
-    it 'should generate the correct brand icon' do
+    it 'generates the correct brand icon' do
       expect(FA::Icon.p(:github, style: :brands)).to eql(
         "<i class='fab fa-github fa-1x' style='' data-fa-transform='' title=''></i>"
       )
@@ -103,7 +103,19 @@ RSpec.describe FA do
       )
     end
 
-    it 'should generate the correct icon with styles' do
+    it 'generates the correct sharp regular icon' do
+      expect(FA::Icon.p(:house, style: :regular, mode: :sharp)).to eql(
+        "<i class='fars fa-house fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
+    it 'generates the correct sharp light icon' do
+      expect(FA::Icon.p(:house, style: :light, mode: :sharp)).to eql(
+        "<i class='fals fa-house fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
+    it 'generates the correct icon with styles' do
       expect(
         FA::Icon.p(
           'fire-alt', style: :duotone, fa_styles: {
@@ -118,7 +130,7 @@ RSpec.describe FA do
   end
 
   describe 'layer' do
-    it 'should generate the correct layer from string or symbol names' do
+    it 'generates the correct layer from string or symbol names' do
       icons = [
         { name: :square },
         { name: :circle, options: { grow: 1 } },
@@ -134,7 +146,7 @@ RSpec.describe FA do
       )
     end
 
-    it 'should generate the correct layer with a span' do
+    it 'generates the correct layer with a span' do
       icons = [
         { name: :square },
         { name: :counter, text: 17, options: { position: :tl } }
@@ -148,7 +160,7 @@ RSpec.describe FA do
       )
     end
 
-    it 'should apply layer titles to all icons' do
+    it 'applies layer titles to all icons' do
       icons = [
         { name: :square, title: 'wrong 1' },
         { name: :exclamation, title: 'wrong 2' }
@@ -164,7 +176,7 @@ RSpec.describe FA do
   end
 
   describe 'build' do
-    it 'should generate the correct layer' do
+    it 'generates the correct layer' do
       layer = FA::Build.p do |b|
         b.icon('circle')
         b.span('counter', 7)
@@ -180,13 +192,13 @@ RSpec.describe FA do
   end
 
   describe 'span' do
-    it 'should generate the correct span from a string or symbol type' do
+    it 'generates the correct span from a string or symbol type' do
       expect(FA::Span.p(:text, 'Hello')).to eql(
         "<span class='fa-layers-text ' style='' data-fa-transform=''>Hello</span>"
       )
     end
 
-    it 'should generate the correct span from a configuration hash' do
+    it 'generates the correct span from a configuration hash' do
       span = { type: :text, text: 'World', options: { position: :bl } }
       expect(FA::Span.p(span)).to eql(
         "<span class='fa-layers-text fa-layers-bottom-left' " \
@@ -194,7 +206,7 @@ RSpec.describe FA do
       )
     end
 
-    it 'should raise ArgumentError for other input types' do
+    it 'raises ArgumentError for other input types' do
       [nil, [], 0].each do |fa|
         expect { FA::Span.p(fa) }.to raise_error(
           ArgumentError, 'Unexpected argument type.'
