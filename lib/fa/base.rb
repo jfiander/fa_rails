@@ -51,7 +51,7 @@ module FA
 
       @classes << "fa-#{name}"
       @classes << "fa-#{options[:size]}x"
-      css = @classes.flatten.join(' ')
+      css = @classes.flatten.join(' ').sub(/\A\s+/, '')
       transforms = @transforms.join(' ')
 
       "<i class='#{css}' style='#{@styles}' data-fa-transform='#{transforms}' " \
@@ -146,7 +146,9 @@ module FA
     end
 
     def parse_style(options)
-      return if options[:css].to_s.match?(/\bfa[#{STYLES.values.join}]\b/)
+      if options[:css].to_s =~ /\bfa[#{STYLES.values.uniq.join}][#{MODES.values.uniq.join}]?\b/
+        return # Don't overwrite a manual style [& mode] class
+      end
 
       style = 'fa'
       style += STYLES[options[:style]]

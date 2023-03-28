@@ -85,6 +85,12 @@ RSpec.describe FA do
       end
     end
 
+    it 'generates the correct icon with a manual style class' do
+      expect(FA::Icon.p(:help, style: :solid, css: 'fad')).to eql(
+        "<i class='fad fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+      )
+    end
+
     it 'should generate the correct brand icon' do
       expect(FA::Icon.p(:github, style: :brands)).to eql(
         "<i class='fab fa-github fa-1x' style='' data-fa-transform='' title=''></i>"
