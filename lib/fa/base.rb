@@ -146,13 +146,13 @@ module FA
     end
 
     def parse_style(options)
-      if options[:css].to_s =~ /\bfa[#{STYLES.values.uniq.join}][#{MODES.values.uniq.join}]?\b/
+      if options[:css].to_s =~ /\bfa[#{MODES.values.uniq.join}]?[#{STYLES.values.uniq.join}]\b/
         return # Don't overwrite a manual style [& mode] class
       end
 
       style = 'fa'
-      style += STYLES[options[:style]]
       style += MODES[options[:mode]]
+      style += STYLES[options[:style]]
     end
   end
 end
