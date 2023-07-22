@@ -54,8 +54,8 @@ module FA
       css = @classes.flatten.join(' ').sub(/\A\s+/, '')
       transforms = @transforms.join(' ')
 
-      "<i class='#{css}' style='#{@styles}' data-fa-transform='#{transforms}' " \
-      "title='#{options[:title]}'></i>"
+      "<i class='#{css}' id='#{options[:id]}' style='#{@styles}' " \
+      "data-fa-transform='#{transforms}' title='#{options[:title]}'></i>"
     end
 
     def parse_span(type, text, options = {})
@@ -70,7 +70,8 @@ module FA
       css = @classes.flatten.reject { |c| c.to_s.match?(/^fa.$/) }.join(' ')
       transforms = @transforms.join(' ')
 
-      "<span class='#{css}' style='#{@styles}' data-fa-transform='#{transforms}'>#{text}</span>"
+      "<span class='#{css}' id='#{options[:id]}' style='#{@styles}' " \
+      "data-fa-transform='#{transforms}'>#{text}</span>"
     end
 
     def fa_options(options)

@@ -30,50 +30,50 @@ RSpec.describe FA do
   describe 'icon' do
     it 'generates the correct icon from a string name' do
       expect(FA::Icon.p('help')).to eql(
-        "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fas fa-help fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'generates the correct icon from a symbol name' do
       expect(FA::Icon.p(:help)).to eql(
-        "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fas fa-help fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'generates the correct icon from a configuration hash' do
       fa = { name: 'help', options: { style: :light, size: 2 } }
       expect(FA::Icon.p(fa)).to eql(
-        "<i class='fal fa-help fa-2x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fal fa-help fa-2x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'handles a string fa option' do
       expect(FA::Icon.p(:help, fa: 'fw 2x')).to eql(
-        "<i class='fas fa-fw fa-2x fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fas fa-fw fa-2x fa-help fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'handles an array fa option' do
       expect(FA::Icon.p(:help, fa: %i[fw 2x])).to eql(
-        "<i class='fas fa-fw fa-2x fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fas fa-fw fa-2x fa-help fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'handles a string css option' do
       expect(FA::Icon.p(:help, css: 'green big')).to eql(
-        "<i class='fas green big fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fas green big fa-help fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'handles an array css option' do
       expect(FA::Icon.p(:help, css: %i[green big])).to eql(
-        "<i class='fas green big fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fas green big fa-help fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'handles a nil css option' do
       expect(FA::Icon.p(:help, css: nil)).to eql(
-        "<i class='fas fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fas fa-help fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
@@ -87,31 +87,31 @@ RSpec.describe FA do
 
     it 'generates the correct icon with a manual style class' do
       expect(FA::Icon.p(:help, style: :solid, css: 'fad')).to eql(
-        "<i class='fad fa-help fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fad fa-help fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'generates the correct brand icon' do
       expect(FA::Icon.p(:github, style: :brands)).to eql(
-        "<i class='fab fa-github fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fab fa-github fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'generates the correct sharp icon' do
       expect(FA::Icon.p(:house, mode: :sharp)).to eql(
-        "<i class='fass fa-house fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fass fa-house fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'generates the correct sharp regular icon' do
       expect(FA::Icon.p(:house, style: :regular, mode: :sharp)).to eql(
-        "<i class='fasr fa-house fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fasr fa-house fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
     it 'generates the correct sharp light icon' do
       expect(FA::Icon.p(:house, style: :light, mode: :sharp)).to eql(
-        "<i class='fasl fa-house fa-1x' style='' data-fa-transform='' title=''></i>"
+        "<i class='fasl fa-house fa-1x' id='' style='' data-fa-transform='' title=''></i>"
       )
     end
 
@@ -123,7 +123,7 @@ RSpec.describe FA do
           }
         )
       ).to eql(
-        "<i class='fad fa-fire-alt fa-1x' style='--fa-primary-opacity: 0.6; --fa-secondary-opacity: 0.4; " \
+        "<i class='fad fa-fire-alt fa-1x' id='' style='--fa-primary-opacity: 0.6; --fa-secondary-opacity: 0.4; " \
         "--fa-primary-color: green; --fa-secondary-color: #DD2200;' data-fa-transform='' title=''></i>"
       )
     end
@@ -139,9 +139,9 @@ RSpec.describe FA do
 
       expect(FA::Layer.p(icons, grow: 2)).to eql(
         "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
-        "<i class='fas fa-stack-1x fa-square fa-1x' style='' data-fa-transform='grow-2' title=''></i>" \
-        "<i class='fas fa-stack-1x fa-circle fa-1x' style='' data-fa-transform='grow-3' title=''></i>" \
-        "<i class='far fa-stack-1x fa-exclamation fa-1x' style='' data-fa-transform='grow-2' title=''></i>" \
+        "<i class='fas fa-stack-1x fa-square fa-1x' id='' style='' data-fa-transform='grow-2' title=''></i>" \
+        "<i class='fas fa-stack-1x fa-circle fa-1x' id='' style='' data-fa-transform='grow-3' title=''></i>" \
+        "<i class='far fa-stack-1x fa-exclamation fa-1x' id='' style='' data-fa-transform='grow-2' title=''></i>" \
         '</span>'
       )
     end
@@ -154,8 +154,8 @@ RSpec.describe FA do
 
       expect(FA::Layer.p(icons)).to eql(
         "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
-        "<i class='fas fa-stack-1x fa-square fa-1x' style='' data-fa-transform='grow-0' title=''></i>" \
-        "<span class='fa-stack-1x fa-layers-counter fa-layers-top-left' style='' data-fa-transform='grow-0'>17</span>" \
+        "<i class='fas fa-stack-1x fa-square fa-1x' id='' style='' data-fa-transform='grow-0' title=''></i>" \
+        "<span class='fa-stack-1x fa-layers-counter fa-layers-top-left' id='' style='' data-fa-transform='grow-0'>17</span>" \
         '</span>'
       )
     end
@@ -168,8 +168,8 @@ RSpec.describe FA do
 
       expect(FA::Layer.p(icons, title: 'right')).to eql(
         "<span class='icon fa-layers fa-stack fa-fw ' title='right'>" \
-        "<i class='fas fa-stack-1x fa-square fa-1x' style='' data-fa-transform='grow-0' title='right'></i>" \
-        "<i class='fas fa-stack-1x fa-exclamation fa-1x' style='' data-fa-transform='grow-0' title='right'></i>" \
+        "<i class='fas fa-stack-1x fa-square fa-1x' id='' style='' data-fa-transform='grow-0' title='right'></i>" \
+        "<i class='fas fa-stack-1x fa-exclamation fa-1x' id='' style='' data-fa-transform='grow-0' title='right'></i>" \
         '</span>'
       )
     end
@@ -184,8 +184,8 @@ RSpec.describe FA do
 
       expect(layer).to eql(
         "<span class='icon fa-layers fa-stack fa-fw ' title=''>" \
-        "<i class='fas fa-stack-1x fa-circle fa-1x' style='' data-fa-transform='grow-0' title=''></i>" \
-        "<span class='fa-stack-1x fa-layers-counter ' style='' data-fa-transform='grow-0'>7</span>" \
+        "<i class='fas fa-stack-1x fa-circle fa-1x' id='' style='' data-fa-transform='grow-0' title=''></i>" \
+        "<span class='fa-stack-1x fa-layers-counter ' id='' style='' data-fa-transform='grow-0'>7</span>" \
         '</span>'
       )
     end
@@ -194,7 +194,7 @@ RSpec.describe FA do
   describe 'span' do
     it 'generates the correct span from a string or symbol type' do
       expect(FA::Span.p(:text, 'Hello')).to eql(
-        "<span class='fa-layers-text ' style='' data-fa-transform=''>Hello</span>"
+        "<span class='fa-layers-text ' id='' style='' data-fa-transform=''>Hello</span>"
       )
     end
 
@@ -202,7 +202,7 @@ RSpec.describe FA do
       span = { type: :text, text: 'World', options: { position: :bl } }
       expect(FA::Span.p(span)).to eql(
         "<span class='fa-layers-text fa-layers-bottom-left' " \
-        "style='' data-fa-transform=''>World</span>"
+        "id='' style='' data-fa-transform=''>World</span>"
       )
     end
 
