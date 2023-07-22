@@ -16,7 +16,7 @@ RSpec.describe FA do
     it 'generates the correct kit link tag' do
       tag = FA::Link.kit('abcdefg')
       expect(tag).to eql(
-        "<script src=\"https://kit.fontawesome.com/abcdefg.js\"></script>"
+        "<script src=\"https://kit.fontawesome.com/abcdefg.js\" async></script>"
       )
     end
 

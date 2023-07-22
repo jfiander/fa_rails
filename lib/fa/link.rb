@@ -23,7 +23,7 @@ module FA
 
     # Outputs the formatted kit link directly.
     def kit
-      "<script src=\"https://kit.fontawesome.com/#{@kit}.js\"></script>"
+      "<script src=\"https://kit.fontawesome.com/#{@kit}.js\" async></script>"
     end
 
     def self.kit(kit_id)
