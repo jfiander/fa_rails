@@ -26,8 +26,8 @@ module FA
     end
 
     # Shortcut for create and output safe
-    def self.p(*args)
-      new(*args).safe
+    def self.p(...)
+      new(...).safe
     end
 
     private
