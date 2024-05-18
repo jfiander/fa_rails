@@ -14,7 +14,7 @@ module FA
     # @param [String] title The tooltip text
     # @param [Integer] grow An additional global scaling factor added in
     # @param [String] css Additional arbitrary CSS classes, space-delimited
-    def initialize(icons = {}, title: nil, grow: 0, css: '')
+    def initialize(icons = [], title: nil, grow: 0, css: '')
       @icons = icons
       @title = title
       @grow = grow
@@ -34,8 +34,7 @@ module FA
     private
 
     def build
-      "<span class='icon fa-layers fa-stack fa-fw #{@css}' " \
-      "title='#{@title}'>#{yield}</span>"
+      "<span class='icon fa-layers fa-stack fa-fw #{@css}' title='#{@title}'>#{yield}</span>"
     end
   end
 end
